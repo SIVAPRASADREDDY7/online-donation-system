@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About & Contact | Siva Prasad Reddy Online Donation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="developer-tag">
+      <span>🌟</span>
+      <span>Online Donation Management System | Developed by <strong>Siva Prasad Reddy</strong></span>
+    </div>
+    <div class="mysql-pill" id="mysqlStatusPill">
+      <span class="pulse-dot"></span> Checking MySQL...
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">SP</div>
+        <div class="brand-text">
+          <h1>Siva Prasad Reddy</h1>
+          <p>Online Donation System</p>
+        </div>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="campaigns.html" class="nav-link">Campaigns</a>
+        <a href="donate.html" class="nav-link btn-donate-nav">❤️ Donate Now</a>
+        <a href="add-campaign.html" class="nav-link">Add Campaign</a>
+        <a href="users.html" class="nav-link">Donors & Users</a>
+        <a href="about.html" class="nav-link active">About & Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO WITH CUSTOM ABOUT BANNER IMAGE -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">💡 Vision, Transparency & Technology</span>
+        <h1>About Siva Prasad Reddy Foundation</h1>
+        <p>
+          Learn more about the vision behind the <strong>Online Donation Management System</strong>, designed and engineered by <strong>Siva Prasad Reddy</strong> to bridge generous donors with real-time MySQL database transparency.
+        </p>
+        <div class="hero-actions">
+          <a href="#aboutStorySection" class="btn btn-accent">Our Mission 👇</a>
+          <a href="#contactSection" class="btn btn-outline-white">📞 Contact Office</a>
+        </div>
+      </div>
+      <div class="hero-image-box">
+        <img src="images/about_banner.jpg" alt="About Siva Prasad Reddy Foundation Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN ABOUT CONTENT -->
+  <main class="section-wrapper" id="aboutStorySection">
+
+    <!-- FOUNDER & VISION STORY -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 60px;">
+      <div>
+        <span class="sub-title" style="color: var(--primary); font-weight: 700; text-transform: uppercase;">The Visionary Behind The Platform</span>
+        <h2 style="font-size: 2rem; margin: 8px 0 16px; color: var(--dark);">Siva Prasad Reddy</h2>
+        <p style="color: var(--gray-700); font-size: 1rem; margin-bottom: 14px; line-height: 1.7;">
+          The <strong>Online Donation Management System</strong> was conceptualized and developed by <strong>Siva Prasad Reddy</strong> with a clear objective: to revolutionize how charity contributions are collected, tracked, and verified.
+        </p>
+        <p style="color: var(--gray-700); font-size: 1rem; margin-bottom: 20px; line-height: 1.7;">
+          Traditional donations often lack transparency regarding how funds are utilized. By integrating a full-stack architecture with a centralized <strong>MySQL Workbench</strong> relational database, every rupee donated is immutably logged with an authentic transaction ID, donor link, and campaign identifier.
+        </p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="donate.html" class="btn btn-primary">🤝 Support Our Mission</a>
+          <a href="campaigns.html" class="btn btn-outline">Explore Causes</a>
+        </div>
+      </div>
+
+      <div class="form-card" style="background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 2px solid #bfdbfe;">
+        <h3 style="color: var(--primary); margin-bottom: 16px; font-size: 1.3rem;">🌟 Core Principles</h3>
+        
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 1.05rem; color: var(--dark); margin-bottom: 4px;">1. 100% Relational Integrity</h4>
+          <p style="font-size: 0.88rem; color: var(--gray-600);">Using MySQL Foreign Keys between <code>users</code>, <code>campaigns</code>, and <code>donations</code> to guarantee clean, uncorrupted financial records.</p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="font-size: 1.05rem; color: var(--dark); margin-bottom: 4px;">2. Zero Hidden Overhead</h4>
+          <p style="font-size: 0.88rem; color: var(--gray-600);">Direct contribution from donor to cause with instant digital verification receipts generated immediately.</p>
+        </div>
+
+        <div>
+          <h4 style="font-size: 1.05rem; color: var(--dark); margin-bottom: 4px;">3. Community-Driven Empowerment</h4>
+          <p style="font-size: 0.88rem; color: var(--gray-600);">Enabling fundraisers to initiate verified campaigns for medical relief, orphan education, and food security.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECHNICAL DATABASE ARCHITECTURE EXPLANATION -->
+    <div class="form-card" style="margin-bottom: 60px;">
+      <div class="section-header" style="margin-bottom: 24px;">
+        <span class="sub-title">System Architecture</span>
+        <h2 style="font-size: 1.7rem;">MySQL Workbench Database Design</h2>
+        <p>The backend is powered by Node.js, Express, and a MySQL relational database named <code>online_donation</code>.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <!-- Table 1 -->
+        <div style="background: var(--gray-50); padding: 20px; border-radius: var(--radius-sm); border-top: 4px solid var(--primary);">
+          <h4 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 8px;">Table 1: users</h4>
+          <p style="font-size: 0.84rem; color: var(--gray-600); margin-bottom: 10px;">Stores donor & administrator credentials and roles.</p>
+          <ul style="font-size: 0.8rem; font-family: monospace; color: var(--gray-700); line-height: 1.8;">
+            <li>🔑 <code>user_id</code> (INT AUTO_INCREMENT PK)</li>
+            <li>📝 <code>name</code> (VARCHAR(100))</li>
+            <li>📧 <code>email</code> (VARCHAR(100) UNIQUE)</li>
+            <li>🔒 <code>password</code> (VARCHAR(255))</li>
+            <li>📱 <code>phone</code> (VARCHAR(15))</li>
+            <li>🏷️ <code>role</code> (VARCHAR(30))</li>
+          </ul>
+        </div>
+
+        <!-- Table 2 -->
+        <div style="background: var(--gray-50); padding: 20px; border-radius: var(--radius-sm); border-top: 4px solid var(--accent);">
+          <h4 style="font-size: 1.1rem; color: var(--accent); margin-bottom: 8px;">Table 2: campaigns</h4>
+          <p style="font-size: 0.84rem; color: var(--gray-600); margin-bottom: 10px;">Stores verified social initiatives and fundraising goals.</p>
+          <ul style="font-size: 0.8rem; font-family: monospace; color: var(--gray-700); line-height: 1.8;">
+            <li>🔑 <code>campaign_id</code> (INT AUTO_INCREMENT PK)</li>
+            <li>📝 <code>title</code> (VARCHAR(45))</li>
+            <li>🎯 <code>target_amount</code> (VARCHAR(45))</li>
+            <li>📅 <code>start_date</code> (VARCHAR(45))</li>
+            <li>⏳ <code>end_date</code> (VARCHAR(45))</li>
+            <li>📊 <code>status</code> (VARCHAR(45))</li>
+          </ul>
+        </div>
+
+        <!-- Table 3 -->
+        <div style="background: var(--gray-50); padding: 20px; border-radius: var(--radius-sm); border-top: 4px solid var(--warning);">
+          <h4 style="font-size: 1.1rem; color: #d97706; margin-bottom: 8px;">Table 3: donations</h4>
+          <p style="font-size: 0.84rem; color: var(--gray-600); margin-bottom: 10px;">Logs every financial contribution with relational links.</p>
+          <ul style="font-size: 0.8rem; font-family: monospace; color: var(--gray-700); line-height: 1.8;">
+            <li>🔑 <code>donation_id</code> (INT AUTO_INCREMENT PK)</li>
+            <li>🔗 <code>user_id</code> (FK -> users)</li>
+            <li>🔗 <code>campaign_id</code> (FK -> campaigns)</li>
+            <li>💰 <code>amount</code> (DECIMAL(10,2))</li>
+            <li>🕒 <code>donation_date</code> (DATETIME)</li>
+            <li>✅ <code>payment_status</code> (VARCHAR(30))</li>
+            <li>🧾 <code>transaction_id</code> (VARCHAR(100) UNIQUE)</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <button class="btn btn-outline btn-sm" onclick="testDatabaseHealth()">
+          ⚡ Run Live MySQL Health Diagnostic Test
+        </button>
+        <div id="healthTestResult" style="margin-top: 10px; font-size: 0.9rem; font-weight: 600;"></div>
+      </div>
+    </div>
+
+    <!-- CONTACT FORM & OFFICE SECTION -->
+    <div id="contactSection">
+      <div class="section-header">
+        <span class="sub-title">Get in Touch</span>
+        <h2>Contact Siva Prasad Reddy Foundation</h2>
+        <p>Have questions about donations, campaigns, or technical integration? Reach out to us.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px;">
+        
+        <!-- Contact Info Box -->
+        <div class="form-card" style="background: #1e3a8a; color: white;">
+          <h3 style="color: white; font-size: 1.4rem; margin-bottom: 20px;">Contact Information</h3>
+          
+          <div style="margin-bottom: 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">📍</div>
+            <div>
+              <strong style="display: block; color: #93c5fd;">Headquarters</strong>
+              <p style="font-size: 0.9rem; color: #e2e8f0;">Siva Prasad Reddy Foundation, Andhra Pradesh / Telangana, India</p>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">📧</div>
+            <div>
+              <strong style="display: block; color: #93c5fd;">Official Email</strong>
+              <p style="font-size: 0.9rem; color: #e2e8f0;">sivaprasadreddy@donation.org</p>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">📞</div>
+            <div>
+              <strong style="display: block; color: #93c5fd;">Helpline Phone</strong>
+              <p style="font-size: 0.9rem; color: #e2e8f0;">+91 98480 12345 / +91 98765 43210</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="font-size: 1.4rem;">🕒</div>
+            <div>
+              <strong style="display: block; color: #93c5fd;">Working Hours</strong>
+              <p style="font-size: 0.9rem; color: #e2e8f0;">Mon - Sat: 9:00 AM - 7:00 PM IST</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Message Form -->
+        <div class="form-card">
+          <form id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+              <label class="form-label" for="contactName">Your Name <span style="color: red;">*</span></label>
+              <input type="text" id="contactName" class="form-control" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactEmail">Email Address <span style="color: red;">*</span></label>
+              <input type="email" id="contactEmail" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactSubject">Subject</label>
+              <input type="text" id="contactSubject" class="form-control" placeholder="e.g. Inquiry regarding orphan education campaign">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Message / Feedback <span style="color: red;">*</span></label>
+              <textarea id="contactMessage" class="form-control" rows="4" placeholder="How can we help you?" required></textarea>
+            </div>
+
+            <div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                ✉️ Send Message to Siva Prasad Reddy Foundation
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Siva Prasad Reddy Foundation</h4>
+        <p style="margin-bottom: 14px; font-size: 0.9rem;">
+          Designed & Developed by <strong>Siva Prasad Reddy</strong>.
+        </p>
+        <p style="font-size: 0.85rem; color: #93c5fd;">
+          💾 Database: <strong>online_donation</strong> (MySQL 8.0)
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="campaigns.html">Active Campaigns</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="add-campaign.html">Create Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Management</h4>
+        <ul>
+          <li><a href="users.html">Users & Donors</a></li>
+          <li><a href="about.html">About Developer</a></li>
+          <li><a href="about.html#contactSection">Contact Office</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>MySQL Workbench Tables</h4>
+        <ul style="font-size: 0.82rem; font-family: monospace;">
+          <li>📁 1. users</li>
+          <li>📁 2. campaigns</li>
+          <li>📁 3. donations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 <strong>Siva Prasad Reddy</strong> | Online Donation Management System.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    async function testDatabaseHealth() {
+      const output = document.getElementById('healthTestResult');
+      output.innerText = 'Testing MySQL connection...';
+      output.style.color = 'var(--primary)';
+
+      try {
+        const res = await fetch('/api/health');
+        const data = await res.json();
+        if (data.status === 'success') {
+          output.innerHTML = `✅ Successfully connected to MySQL database: <strong>${data.db_name}</strong> at ${new Date(data.timestamp).toLocaleTimeString()}`;
+          output.style.color = 'var(--accent)';
+        } else {
+          output.innerHTML = `❌ MySQL Connection failed: ${data.error}`;
+          output.style.color = 'var(--danger)';
+        }
+      } catch (e) {
+        output.innerHTML = `❌ Server communication error: ${e.message}`;
+        output.style.color = 'var(--danger)';
+      }
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value;
+      showToast(`Thank you ${name}! Your inquiry has been sent to Siva Prasad Reddy Foundation.`, 'success');
+      document.getElementById('contactForm').reset();
+    }
+  </script>
+</body>
+</html>

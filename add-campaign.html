@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Campaign | Siva Prasad Reddy Online Donation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="developer-tag">
+      <span>🌟</span>
+      <span>Online Donation Management System | Developed by <strong>Siva Prasad Reddy</strong></span>
+    </div>
+    <div class="mysql-pill" id="mysqlStatusPill">
+      <span class="pulse-dot"></span> Checking MySQL...
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">SP</div>
+        <div class="brand-text">
+          <h1>Siva Prasad Reddy</h1>
+          <p>Online Donation System</p>
+        </div>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="campaigns.html" class="nav-link">Campaigns</a>
+        <a href="donate.html" class="nav-link btn-donate-nav">❤️ Donate Now</a>
+        <a href="add-campaign.html" class="nav-link active">Add Campaign</a>
+        <a href="users.html" class="nav-link">Donors & Users</a>
+        <a href="about.html" class="nav-link">About & Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO WITH CUSTOM BANNER IMAGE -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">⚙️ Admin & Fundraiser Portal • MySQL Schema</span>
+        <h1>Launch & Manage Campaigns</h1>
+        <p>
+          Create fundraising initiatives directly saved to MySQL Workbench table <code>campaigns</code>.
+          Fill the form below and view live preview in real time.
+        </p>
+        <div class="hero-actions">
+          <a href="#createCampaignSection" class="btn btn-accent">Create New Campaign 👇</a>
+          <a href="#campaignListSection" class="btn btn-outline-white">📋 View Campaign Table</a>
+        </div>
+      </div>
+      <div class="hero-image-box">
+        <img src="images/create_campaign_banner.jpg" alt="Create Campaign Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT: FORM + LIVE PREVIEW -->
+  <main class="section-wrapper" id="createCampaignSection">
+    
+    <div class="section-header">
+      <span class="sub-title">MySQL Table: campaigns</span>
+      <h2>Add New Fundraising Campaign</h2>
+      <p>Data submitted will be inserted into MySQL table <code>campaigns(title, target_amount, start_date, end_date, status)</code>.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: start;">
+      
+      <!-- FORM -->
+      <div class="form-card">
+        <form id="addCampaignForm" onsubmit="handleCreateCampaign(event)">
+          
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label class="form-label" for="campTitle">Campaign Title <span style="color: red;">*</span></label>
+              <span style="font-size: 0.76rem; color: var(--gray-600);" id="titleCounter">0 / 45 chars</span>
+            </div>
+            <input type="text" id="campTitle" class="form-control" maxlength="45" placeholder="e.g. Free Eye Surgery Camp" required oninput="updatePreview()">
+            <small style="color: var(--gray-600); font-size: 0.78rem;">
+              Enforced maximum 45 characters to match MySQL schema <code>VARCHAR(45)</code>.
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="campTarget">Target Goal Amount (₹ INR) <span style="color: red;">*</span></label>
+            <input type="number" id="campTarget" class="form-control" placeholder="e.g. 50000" min="100" required oninput="updatePreview()">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="campStartDate">Start Date <span style="color: red;">*</span></label>
+              <input type="date" id="campStartDate" class="form-control" required oninput="updatePreview()">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="campEndDate">End Date <span style="color: red;">*</span></label>
+              <input type="date" id="campEndDate" class="form-control" required oninput="updatePreview()">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="campStatus">Status <span style="color: red;">*</span></label>
+            <select id="campStatus" class="form-control" onchange="updatePreview()">
+              <option value="Active" selected>Active (Accepting Donations)</option>
+              <option value="Upcoming">Upcoming (Pre-launch)</option>
+              <option value="Completed">Completed (Goal Achieved)</option>
+            </select>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <button type="submit" id="btnSubmitCampaign" class="btn btn-primary" style="width: 100%;">
+              💾 Insert Campaign into MySQL Database
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- LIVE PREVIEW CARD -->
+      <div>
+        <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 12px; color: var(--gray-700); display: flex; align-items: center; gap: 6px;">
+          <span>👁️</span> Live Card Preview
+        </div>
+        
+        <div class="campaign-card">
+          <div class="campaign-header">
+            <span class="badge badge-active" id="prevBadge">Active</span>
+            <span style="font-size: 0.78rem; color: var(--gray-600);">New Entry</span>
+          </div>
+          <div class="campaign-body">
+            <h3 id="prevTitle">Free Eye Surgery Camp</h3>
+            <div class="progress-container">
+              <div class="progress-labels">
+                <span>Raised: <strong>₹0</strong></span>
+                <span style="color: var(--accent); font-weight: 700;">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="campaign-meta">
+              <span>Goal: <strong id="prevTarget">₹50,000</strong></span>
+              <span id="prevEndDate">Ends: 2026-12-31</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--gray-600); margin-top: 6px;">
+              <span id="prevStartDate">Starts: 2026-11-01</span>
+            </div>
+          </div>
+          <div class="campaign-footer">
+            <span style="font-size: 0.82rem; color: var(--gray-600);">0 Donations</span>
+            <button class="btn btn-accent btn-sm" disabled>Donate Now</button>
+          </div>
+        </div>
+
+        <div style="margin-top: 18px; background: #e0f2fe; padding: 14px; border-radius: var(--radius-sm); font-size: 0.85rem; color: #0369a1; border: 1px solid #bae6fd;">
+          💡 <strong>MySQL Workbench Notice:</strong><br>
+          Once you click submit, open MySQL Workbench and run:
+          <pre style="margin-top: 6px; background: white; padding: 6px; border-radius: 4px; font-family: monospace;">SELECT * FROM online_donation.campaigns;</pre>
+          You will see the new row immediately!
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ALL CAMPAIGNS TABLE (FROM MYSQL) -->
+    <div style="margin-top: 60px;" id="campaignListSection">
+      <div class="section-header">
+        <span class="sub-title">Database Records</span>
+        <h2>Current Campaigns in MySQL Workbench</h2>
+        <p>Real-time records from table <code>campaigns</code>.</p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Campaign Title</th>
+              <th>Target Goal</th>
+              <th>Total Raised</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="campaignTableBody">
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 20px;">Loading campaigns from MySQL...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Siva Prasad Reddy Foundation</h4>
+        <p style="margin-bottom: 14px; font-size: 0.9rem;">
+          Developed by <strong>Siva Prasad Reddy</strong>.
+        </p>
+        <p style="font-size: 0.85rem; color: #93c5fd;">
+          💾 Database: <strong>online_donation</strong> | Table: <strong>campaigns</strong>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="campaigns.html">Active Campaigns</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="add-campaign.html">Create Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Management</h4>
+        <ul>
+          <li><a href="users.html">Users & Donors</a></li>
+          <li><a href="about.html">About Developer</a></li>
+          <li><a href="about.html#contactSection">Contact Office</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>MySQL Workbench Tables</h4>
+        <ul style="font-size: 0.82rem; font-family: monospace;">
+          <li>📁 1. users</li>
+          <li>📁 2. campaigns</li>
+          <li>📁 3. donations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 <strong>Siva Prasad Reddy</strong> | Online Donation Management System.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Set default dates
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      const nextMonth = new Date();
+      nextMonth.setMonth(nextMonth.getMonth() + 2);
+      const endStr = nextMonth.toISOString().split('T')[0];
+
+      document.getElementById('campStartDate').value = today;
+      document.getElementById('campEndDate').value = endStr;
+      updatePreview();
+      loadCampaignTable();
+    });
+
+    // Update live preview card
+    function updatePreview() {
+      const title = document.getElementById('campTitle').value || 'Free Eye Surgery Camp';
+      const target = document.getElementById('campTarget').value || '50000';
+      const start = document.getElementById('campStartDate').value || '2026-11-01';
+      const end = document.getElementById('campEndDate').value || '2026-12-31';
+      const status = document.getElementById('campStatus').value;
+
+      document.getElementById('titleCounter').innerText = `${document.getElementById('campTitle').value.length} / 45 chars`;
+      document.getElementById('prevTitle').innerText = title;
+      document.getElementById('prevTarget').innerText = formatCurrency(target);
+      document.getElementById('prevStartDate').innerText = 'Starts: ' + formatDate(start);
+      document.getElementById('prevEndDate').innerText = 'Ends: ' + formatDate(end);
+      
+      const badge = document.getElementById('prevBadge');
+      badge.innerText = status;
+      badge.className = 'badge ' + (status === 'Active' ? 'badge-active' : (status === 'Completed' ? 'badge-completed' : 'badge-upcoming'));
+    }
+
+    // Load table from MySQL
+    async function loadCampaignTable() {
+      try {
+        const res = await fetch('/api/campaigns');
+        const data = await res.json();
+        const tbody = document.getElementById('campaignTableBody');
+        
+        if (data.success && data.data.length > 0) {
+          tbody.innerHTML = data.data.map(c => {
+            const statusClass = c.status === 'Active' ? 'badge-active' : (c.status === 'Completed' ? 'badge-completed' : 'badge-upcoming');
+            return `
+              <tr>
+                <td><strong>#${c.campaign_id}</strong></td>
+                <td><strong>${c.title}</strong></td>
+                <td>${formatCurrency(c.target_amount)}</td>
+                <td style="color: var(--accent); font-weight: 700;">${formatCurrency(c.raised_amount)}</td>
+                <td>${formatDate(c.start_date)}</td>
+                <td>${formatDate(c.end_date)}</td>
+                <td><span class="badge ${statusClass}">${c.status}</span></td>
+                <td>
+                  <button class="btn btn-danger btn-sm" onclick="deleteCampaign(${c.campaign_id})">🗑️ Delete</button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        } else {
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 20px;">No campaigns found in MySQL. Add your first campaign above!</td></tr>`;
+        }
+      } catch (err) {
+        console.error('Error loading campaigns:', err);
+      }
+    }
+
+    // Create Campaign (POST to /api/campaigns)
+    async function handleCreateCampaign(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('btnSubmitCampaign');
+      btn.disabled = true;
+      btn.innerText = '⏳ Inserting into MySQL...';
+
+      const title = document.getElementById('campTitle').value.trim();
+      const target_amount = document.getElementById('campTarget').value.trim();
+      const start_date = document.getElementById('campStartDate').value;
+      const end_date = document.getElementById('campEndDate').value;
+      const status = document.getElementById('campStatus').value;
+
+      try {
+        const res = await fetch('/api/campaigns', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, target_amount, start_date, end_date, status })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          showToast(`Campaign #${data.campaign_id} added successfully to MySQL!`, 'success');
+          document.getElementById('addCampaignForm').reset();
+          loadCampaignTable();
+          updatePreview();
+        } else {
+          showToast(`Error: ${data.message}`, 'error');
+        }
+      } catch (err) {
+        console.error('Create error:', err);
+        showToast('Server error while saving campaign.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = '💾 Insert Campaign into MySQL Database';
+      }
+    }
+
+    // Delete Campaign
+    async function deleteCampaign(id) {
+      if (!confirm(`Are you sure you want to delete campaign #${id} from MySQL database?`)) return;
+
+      try {
+        const res = await fetch(`/api/campaigns/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`Campaign #${id} deleted from MySQL.`, 'success');
+          loadCampaignTable();
+        } else {
+          showToast(`Cannot delete: ${data.message}`, 'error');
+        }
+      } catch (err) {
+        console.error('Delete error:', err);
+        showToast('Error deleting campaign.', 'error');
+      }
+    }
+  </script>
+</body>
+</html>

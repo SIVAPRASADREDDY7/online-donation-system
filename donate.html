@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make a Donation | Siva Prasad Reddy Online Donation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="developer-tag">
+      <span>🌟</span>
+      <span>Online Donation Management System | Developed by <strong>Siva Prasad Reddy</strong></span>
+    </div>
+    <div class="mysql-pill" id="mysqlStatusPill">
+      <span class="pulse-dot"></span> Checking MySQL...
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">SP</div>
+        <div class="brand-text">
+          <h1>Siva Prasad Reddy</h1>
+          <p>Online Donation System</p>
+        </div>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="campaigns.html" class="nav-link">Campaigns</a>
+        <a href="donate.html" class="nav-link active btn-donate-nav">❤️ Donate Now</a>
+        <a href="add-campaign.html" class="nav-link">Add Campaign</a>
+        <a href="users.html" class="nav-link">Donors & Users</a>
+        <a href="about.html" class="nav-link">About & Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO WITH CUSTOM DONATE BANNER IMAGE -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">💳 Instant Digital Giving • MySQL Connected</span>
+        <h1>Support a Cause, Save a Life.</h1>
+        <p>
+          Every contribution submitted here is immediately written to the MySQL database table <code>donations</code>.
+          Fill the details below to complete your donation and receive an instant receipt.
+        </p>
+        <div class="hero-actions">
+          <a href="#donationFormSection" class="btn btn-accent">Donate Below 👇</a>
+          <a href="users.html" class="btn btn-outline-white">👥 View Donor List</a>
+        </div>
+      </div>
+      <div class="hero-image-box">
+        <img src="images/donate_banner.jpg" alt="Make a Donation Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATION FORM CONTAINER -->
+  <main class="section-wrapper" id="donationFormSection">
+    <div style="max-width: 760px; margin: 0 auto;">
+
+      <div class="form-card">
+        <div style="text-align: center; margin-bottom: 28px;">
+          <h2 style="font-size: 1.8rem; color: var(--dark);">Online Donation Portal</h2>
+          <p style="color: var(--gray-600); font-size: 0.92rem; margin-top: 4px;">
+            Securely recorded under <strong>Siva Prasad Reddy Foundation</strong> in MySQL Workbench
+          </p>
+        </div>
+
+        <form id="donationForm" onsubmit="handleDonationSubmit(event)">
+
+          <!-- 1. SELECT CAMPAIGN -->
+          <div class="form-group">
+            <label class="form-label" for="campaignSelect">1. Select Campaign / Cause <span style="color: red;">*</span></label>
+            <select id="campaignSelect" class="form-control" required>
+              <option value="" disabled selected>Loading campaigns from MySQL...</option>
+            </select>
+            <small style="color: var(--gray-600); font-size: 0.78rem;">
+              Loaded in real-time from MySQL table <code>campaigns</code>.
+            </small>
+          </div>
+
+          <!-- 2. DONOR TYPE TOGGLE -->
+          <div class="form-group">
+            <label class="form-label">2. Donor Information <span style="color: red;">*</span></label>
+            <div style="display: flex; gap: 12px; margin-bottom: 14px;">
+              <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 600;">
+                <input type="radio" name="donorType" value="new" checked onchange="toggleDonorType()">
+                Quick Donor Entry (New Donor)
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 600;">
+                <input type="radio" name="donorType" value="existing" onchange="toggleDonorType()">
+                Select Existing Registered User
+              </label>
+            </div>
+
+            <!-- Existing User Select Dropdown -->
+            <div id="existingUserBlock" style="display: none; margin-bottom: 14px;">
+              <select id="existingUserSelect" class="form-control">
+                <option value="" disabled selected>Select from registered users in MySQL...</option>
+              </select>
+            </div>
+
+            <!-- New Donor Input Fields -->
+            <div id="newUserBlock">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+                <div>
+                  <input type="text" id="donorName" class="form-control" placeholder="Full Name (e.g. Ramesh Reddy)">
+                </div>
+                <div>
+                  <input type="email" id="donorEmail" class="form-control" placeholder="Email Address">
+                </div>
+              </div>
+              <div>
+                <input type="tel" id="donorPhone" class="form-control" placeholder="Phone Number (10 digits)">
+              </div>
+              <small style="color: var(--gray-600); font-size: 0.78rem; display: block; margin-top: 6px;">
+                💡 If not already registered, this will automatically create a user entry in MySQL table <code>users</code>.
+              </small>
+            </div>
+          </div>
+
+          <!-- 3. DONATION AMOUNT -->
+          <div class="form-group">
+            <label class="form-label" for="amountInput">3. Donation Amount (₹ INR) <span style="color: red;">*</span></label>
+            
+            <div class="amount-pills" style="margin-bottom: 12px;">
+              <button type="button" class="amount-pill" onclick="selectAmount(500, this)">₹500</button>
+              <button type="button" class="amount-pill selected" onclick="selectAmount(1000, this)">₹1,000</button>
+              <button type="button" class="amount-pill" onclick="selectAmount(2500, this)">₹2,500</button>
+              <button type="button" class="amount-pill" onclick="selectAmount(5000, this)">₹5,000</button>
+              <button type="button" class="amount-pill" onclick="selectAmount(10000, this)">₹10,000</button>
+            </div>
+
+            <div style="position: relative;">
+              <span style="position: absolute; left: 14px; top: 11px; font-weight: bold; color: var(--gray-700);">₹</span>
+              <input type="number" id="amountInput" class="form-control" style="padding-left: 32px;" value="1000" min="1" step="any" required>
+            </div>
+          </div>
+
+          <!-- 4. PAYMENT METHOD -->
+          <div class="form-group">
+            <label class="form-label">4. Payment Gateway Mode</label>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+              <label class="form-card" style="padding: 12px; text-align: center; cursor: pointer; border: 2px solid var(--primary); background: var(--primary-light);">
+                <input type="radio" name="paymentMode" value="UPI" checked style="display: none;">
+                <div style="font-size: 1.5rem;">📱</div>
+                <div style="font-weight: 700; font-size: 0.85rem; margin-top: 4px;">UPI / QR</div>
+                <div style="font-size: 0.72rem; color: var(--gray-600);">GPay, PhonePe, Paytm</div>
+              </label>
+
+              <label class="form-card" style="padding: 12px; text-align: center; cursor: pointer; border: 2px solid var(--gray-200);">
+                <input type="radio" name="paymentMode" value="Card" style="display: none;">
+                <div style="font-size: 1.5rem;">💳</div>
+                <div style="font-weight: 700; font-size: 0.85rem; margin-top: 4px;">Cards</div>
+                <div style="font-size: 0.72rem; color: var(--gray-600);">Debit / Credit Card</div>
+              </label>
+
+              <label class="form-card" style="padding: 12px; text-align: center; cursor: pointer; border: 2px solid var(--gray-200);">
+                <input type="radio" name="paymentMode" value="NetBanking" style="display: none;">
+                <div style="font-size: 1.5rem;">🏦</div>
+                <div style="font-weight: 700; font-size: 0.85rem; margin-top: 4px;">Net Banking</div>
+                <div style="font-size: 0.72rem; color: var(--gray-600);">All Major Banks</div>
+              </label>
+            </div>
+          </div>
+
+          <!-- SUBMIT BUTTON -->
+          <div style="margin-top: 28px;">
+            <button type="submit" id="btnSubmitDonation" class="btn btn-accent" style="width: 100%; padding: 14px; font-size: 1.1rem;">
+              🔒 Complete Donation & Record in MySQL
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- RECEIPT MODAL DIALOG -->
+  <div class="modal-overlay" id="receiptModal">
+    <div class="modal-content" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+          <span>🎉</span> Donation Receipt
+        </h3>
+        <button onclick="closeReceiptModal()" style="background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer;">✕</button>
+      </div>
+
+      <div class="modal-body" id="receiptPrintArea">
+        <div style="text-align: center; border-bottom: 2px dashed var(--gray-200); padding-bottom: 16px; margin-bottom: 18px;">
+          <div class="brand-icon" style="margin: 0 auto 10px; width: 48px; height: 48px;">SP</div>
+          <h2 style="font-size: 1.3rem; color: var(--dark);">Siva Prasad Reddy Foundation</h2>
+          <p style="font-size: 0.82rem; color: var(--primary); font-weight: 600;">Online Donation Management System</p>
+          <div class="badge badge-active" style="margin-top: 6px;">Payment Status: Completed</div>
+        </div>
+
+        <table style="width: 100%; font-size: 0.9rem; line-height: 1.8;">
+          <tr>
+            <td style="color: var(--gray-600);">Transaction ID:</td>
+            <td style="text-align: right;"><code id="recTxnId" style="font-weight: bold;">TXN-SPR-0000</code></td>
+          </tr>
+          <tr>
+            <td style="color: var(--gray-600);">MySQL Donation ID:</td>
+            <td style="text-align: right;"><strong id="recDonationId">#0</strong></td>
+          </tr>
+          <tr>
+            <td style="color: var(--gray-600);">Donor Name:</td>
+            <td style="text-align: right;"><strong id="recDonorName">Donor</strong></td>
+          </tr>
+          <tr>
+            <td style="color: var(--gray-600);">Campaign Cause:</td>
+            <td style="text-align: right;"><strong id="recCampaignTitle">Cause</strong></td>
+          </tr>
+          <tr>
+            <td style="color: var(--gray-600);">Amount Donated:</td>
+            <td style="text-align: right; color: var(--accent); font-size: 1.2rem; font-weight: 800;" id="recAmount">₹0</td>
+          </tr>
+          <tr>
+            <td style="color: var(--gray-600);">Date & Time:</td>
+            <td style="text-align: right;" id="recDate">Just now</td>
+          </tr>
+          <tr>
+            <td style="color: var(--gray-600);">Database:</td>
+            <td style="text-align: right;"><code>online_donation (MySQL)</code></td>
+          </tr>
+        </table>
+
+        <div style="background: var(--gray-50); padding: 12px; border-radius: var(--radius-sm); margin-top: 18px; font-size: 0.8rem; text-align: center; color: var(--gray-600); border: 1px solid var(--gray-200);">
+          🙏 Thank you for your generous contribution. This donation has been recorded directly into MySQL Workbench.
+        </div>
+      </div>
+
+      <div style="padding: 16px 24px; background: var(--gray-50); border-top: 1px solid var(--gray-200); display: flex; justify-content: space-between; gap: 12px;">
+        <button class="btn btn-outline btn-sm" onclick="printReceipt()">🖨️ Print / Save Receipt</button>
+        <button class="btn btn-accent btn-sm" onclick="closeReceiptModal()">Done & View All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Siva Prasad Reddy Foundation</h4>
+        <p style="margin-bottom: 14px; font-size: 0.9rem;">
+          Transparent online donation management developed by <strong>Siva Prasad Reddy</strong>.
+        </p>
+        <p style="font-size: 0.85rem; color: #93c5fd;">
+          💾 Database: <strong>online_donation</strong> | Table: <strong>donations</strong>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="campaigns.html">Active Campaigns</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="add-campaign.html">Create Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Management</h4>
+        <ul>
+          <li><a href="users.html">Users & Donors</a></li>
+          <li><a href="about.html">About Developer</a></li>
+          <li><a href="about.html#contactSection">Contact Office</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>MySQL Workbench Tables</h4>
+        <ul style="font-size: 0.82rem; font-family: monospace;">
+          <li>📁 1. users</li>
+          <li>📁 2. campaigns</li>
+          <li>📁 3. donations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 <strong>Siva Prasad Reddy</strong> | Online Donation Management System.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    let registeredUsers = [];
+
+    // Initialize page
+    async function initDonatePage() {
+      // 1. Fetch campaigns for dropdown
+      const urlParams = new URLSearchParams(window.location.search);
+      const preselectedCampId = urlParams.get('campaign_id');
+
+      try {
+        const campRes = await fetch('/api/campaigns');
+        const campData = await campRes.json();
+        const campSelect = document.getElementById('campaignSelect');
+        
+        if (campData.success && campData.data.length > 0) {
+          campSelect.innerHTML = '<option value="" disabled>-- Select a cause to support --</option>' + 
+            campData.data.map(c => `
+              <option value="${c.campaign_id}" ${preselectedCampId == c.campaign_id ? 'selected' : ''}>
+                #${c.campaign_id} - ${c.title} (Goal: ${formatCurrency(c.target_amount)})
+              </option>
+            `).join('');
+
+          // If no preselect, choose first option
+          if (!preselectedCampId && campData.data.length > 0) {
+            campSelect.selectedIndex = 1;
+          }
+        } else {
+          campSelect.innerHTML = '<option value="" disabled>No campaigns found in MySQL database</option>';
+        }
+      } catch (err) {
+        console.error('Error fetching campaigns:', err);
+      }
+
+      // 2. Fetch users for existing user dropdown
+      try {
+        const userRes = await fetch('/api/users');
+        const userData = await userRes.json();
+        if (userData.success) {
+          registeredUsers = userData.data;
+          const userSelect = document.getElementById('existingUserSelect');
+          userSelect.innerHTML = '<option value="" disabled selected>-- Choose registered donor --</option>' +
+            registeredUsers.map(u => `
+              <option value="${u.user_id}">#${u.user_id} - ${u.name} (${u.email}) [${u.role}]</option>
+            `).join('');
+        }
+      } catch (err) {
+        console.error('Error fetching users:', err);
+      }
+    }
+
+    // Toggle Donor Type (New vs Existing)
+    function toggleDonorType() {
+      const isNew = document.querySelector('input[name="donorType"]:checked').value === 'new';
+      document.getElementById('newUserBlock').style.display = isNew ? 'block' : 'none';
+      document.getElementById('existingUserBlock').style.display = isNew ? 'none' : 'block';
+    }
+
+    // Amount pill selection
+    function selectAmount(val, btn) {
+      document.getElementById('amountInput').value = val;
+      document.querySelectorAll('.amount-pill').forEach(p => p.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    // Submit Donation to MySQL
+    async function handleDonationSubmit(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('btnSubmitDonation');
+      btn.disabled = true;
+      btn.innerText = '⏳ Recording in MySQL Workbench...';
+
+      const campaign_id = document.getElementById('campaignSelect').value;
+      const amount = document.getElementById('amountInput').value;
+      const donorType = document.querySelector('input[name="donorType"]:checked').value;
+
+      let payload = {
+        campaign_id: parseInt(campaign_id, 10),
+        amount: parseFloat(amount),
+        payment_status: 'Completed'
+      };
+
+      if (donorType === 'existing') {
+        const userId = document.getElementById('existingUserSelect').value;
+        if (!userId) {
+          showToast('Please select a registered user from the dropdown.', 'error');
+          btn.disabled = false;
+          btn.innerText = '🔒 Complete Donation & Record in MySQL';
+          return;
+        }
+        payload.user_id = parseInt(userId, 10);
+      } else {
+        const name = document.getElementById('donorName').value.trim();
+        const email = document.getElementById('donorEmail').value.trim();
+        const phone = document.getElementById('donorPhone').value.trim();
+
+        if (!name || !email) {
+          showToast('Please enter your Name and Email address.', 'error');
+          btn.disabled = false;
+          btn.innerText = '🔒 Complete Donation & Record in MySQL';
+          return;
+        }
+
+        payload.donor_name = name;
+        payload.donor_email = email;
+        payload.donor_phone = phone || '9999999999';
+      }
+
+      try {
+        const res = await fetch('/api/donations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          showToast('Donation saved successfully into MySQL database table `donations`!', 'success');
+
+          // Populate Receipt Modal
+          document.getElementById('recTxnId').innerText = data.transaction_id;
+          document.getElementById('recDonationId').innerText = '#' + data.donation_id;
+          document.getElementById('recAmount').innerText = formatCurrency(data.data.amount);
+          document.getElementById('recCampaignTitle').innerText = data.data.campaign_title || 'Selected Campaign';
+          document.getElementById('recDonorName').innerText = payload.donor_name || ('User #' + payload.user_id);
+          document.getElementById('recDate').innerText = new Date().toLocaleString();
+
+          // Show modal
+          document.getElementById('receiptModal').classList.add('active');
+
+          // Reset form
+          document.getElementById('donationForm').reset();
+          document.getElementById('amountInput').value = '1000';
+        } else {
+          showToast(`Error: ${data.message}`, 'error');
+        }
+      } catch (err) {
+        console.error('Submission error:', err);
+        showToast('Server error while saving donation to MySQL.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = '🔒 Complete Donation & Record in MySQL';
+      }
+    }
+
+    function closeReceiptModal() {
+      document.getElementById('receiptModal').classList.remove('active');
+    }
+
+    function printReceipt() {
+      window.print();
+    }
+
+    document.addEventListener('DOMContentLoaded', initDonatePage);
+  </script>
+</body>
+</html>

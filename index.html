@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siva Prasad Reddy - Online Donation Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="developer-tag">
+      <span>🌟</span>
+      <span>Online Donation Management System | Designed & Developed by <strong>Siva Prasad Reddy</strong></span>
+    </div>
+    <div class="mysql-pill" id="mysqlStatusPill">
+      <span class="pulse-dot"></span> Checking MySQL...
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">SP</div>
+        <div class="brand-text">
+          <h1>Siva Prasad Reddy</h1>
+          <p>Online Donation System</p>
+        </div>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="campaigns.html" class="nav-link">Campaigns</a>
+        <a href="donate.html" class="nav-link btn-donate-nav">❤️ Donate Now</a>
+        <a href="add-campaign.html" class="nav-link">Add Campaign</a>
+        <a href="users.html" class="nav-link">Donors & Users</a>
+        <a href="about.html" class="nav-link">About & Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION WITH CUSTOM GENERATED HERO IMAGE -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">💙 100% Transparent • Powered by MySQL Database</span>
+        <h1>Empowering Lives, One Donation at a Time.</h1>
+        <p>
+          Welcome to the <strong>Siva Prasad Reddy Online Donation Management System</strong>.
+          Every rupee you contribute directly supports medical emergencies, education for orphan children, and daily food relief.
+          All records are securely tracked in real time in our MySQL Workbench database.
+        </p>
+        <div class="hero-actions">
+          <a href="donate.html" class="btn btn-accent">🤝 Donate Now</a>
+          <a href="campaigns.html" class="btn btn-outline-white">📋 Browse All Causes</a>
+          <a href="add-campaign.html" class="btn btn-outline-white">➕ Start Campaign</a>
+        </div>
+      </div>
+      <div class="hero-image-box">
+        <img src="images/hero_banner.jpg" alt="Siva Prasad Reddy Online Donation System Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE METRICS FROM MYSQL DATABASE -->
+  <main class="section-wrapper">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon green">💰</div>
+        <div class="stat-info">
+          <h3 id="statTotalRaised">₹0</h3>
+          <p>Total Funds Raised in MySQL</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue">🎯</div>
+        <div class="stat-info">
+          <h3 id="statActiveCampaigns">0</h3>
+          <p>Active Verified Causes</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">👥</div>
+        <div class="stat-info">
+          <h3 id="statTotalDonors">0</h3>
+          <p>Registered Donors</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon amber">📜</div>
+        <div class="stat-info">
+          <h3 id="statTotalDonations">0</h3>
+          <p>Successful Transactions</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURED CAMPAIGNS SECTION -->
+    <div class="section-header">
+      <span class="sub-title">Urgent Need</span>
+      <h2>Featured Fundraising Campaigns</h2>
+      <p>Live campaigns directly connected to MySQL Workbench database. Select a cause and bring hope today.</p>
+    </div>
+
+    <div class="campaigns-grid" id="featuredCampaignsGrid">
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray-600);">
+        Loading campaigns from MySQL database...
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;">
+      <a href="campaigns.html" class="btn btn-outline">View All Active Campaigns →</a>
+    </div>
+
+    <!-- HOW IT WORKS SECTION -->
+    <div style="margin-top: 60px;">
+      <div class="section-header">
+        <span class="sub-title">Simple & Transparent</span>
+        <h2>How Siva Prasad Reddy's Donation System Works</h2>
+        <p>Three effortless steps to transform lives with real-time MySQL database verification.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <div class="form-card" style="text-align: center; padding: 28px;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+          <h3 style="margin-bottom: 8px;">1. Choose a Cause</h3>
+          <p style="color: var(--gray-600); font-size: 0.9rem;">Browse verified campaigns for healthcare, orphan education, and food relief stored in our MySQL `campaigns` table.</p>
+        </div>
+        <div class="form-card" style="text-align: center; padding: 28px;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">💳</div>
+          <h3 style="margin-bottom: 8px;">2. Donate Securely</h3>
+          <p style="color: var(--gray-600); font-size: 0.9rem;">Contribute via UPI, Cards, or Net Banking. Instant unique transaction IDs generated and logged into the `donations` table.</p>
+        </div>
+        <div class="form-card" style="text-align: center; padding: 28px;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">📊</div>
+          <h3 style="margin-bottom: 8px;">3. Direct Impact Tracking</h3>
+          <p style="color: var(--gray-600); font-size: 0.9rem;">Every single transaction is visible in MySQL Workbench, ensuring 100% transparency with zero hidden deductions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECENT DONATIONS FEED -->
+    <div style="margin-top: 60px;">
+      <div class="section-header">
+        <span class="sub-title">Recent Activity</span>
+        <h2>Live Donor Wall (MySQL Records)</h2>
+        <p>Recent contributions recorded in MySQL database table `donations`.</p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Txn ID</th>
+              <th>Donor Name</th>
+              <th>Campaign Cause</th>
+              <th>Amount</th>
+              <th>Date & Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="recentDonationsTableBody">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 20px;">Fetching recent donations...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Siva Prasad Reddy Foundation</h4>
+        <p style="margin-bottom: 14px; font-size: 0.9rem;">
+          An advanced Online Donation Management System developed by <strong>Siva Prasad Reddy</strong>.
+          Designed to bring 100% digital transparency and community empowerment.
+        </p>
+        <p style="font-size: 0.85rem; color: #93c5fd;">
+          💾 MySQL Database: <strong>online_donation</strong> (localhost:3306)
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="campaigns.html">Active Campaigns</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="add-campaign.html">Create Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Management</h4>
+        <ul>
+          <li><a href="users.html">Users & Donors</a></li>
+          <li><a href="about.html">About Developer</a></li>
+          <li><a href="about.html#contactSection">Contact Office</a></li>
+          <li><a href="donate.html">Instant Receipt</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>MySQL Workbench Tables</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 8px;">Tables managed in real-time:</p>
+        <ul style="font-size: 0.82rem; font-family: monospace;">
+          <li>📁 1. users (user_id, name, email...)</li>
+          <li>📁 2. campaigns (campaign_id, title...)</li>
+          <li>📁 3. donations (donation_id, amount...)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © 2026 <strong>Siva Prasad Reddy</strong> | Online Donation Management System. All Rights Reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Load Dashboard Stats & Featured Campaigns
+    async function loadHomeData() {
+      try {
+        // 1. Stats
+        const statsRes = await fetch('/api/stats');
+        const statsData = await statsRes.json();
+        if (statsData.success) {
+          const { total_raised, active_campaigns, total_users, total_donations } = statsData.data;
+          document.getElementById('statTotalRaised').innerText = formatCurrency(total_raised);
+          document.getElementById('statActiveCampaigns').innerText = active_campaigns;
+          document.getElementById('statTotalDonors').innerText = total_users;
+          document.getElementById('statTotalDonations').innerText = total_donations;
+        }
+
+        // 2. Featured Campaigns (first 3)
+        const campRes = await fetch('/api/campaigns');
+        const campData = await campRes.json();
+        const grid = document.getElementById('featuredCampaignsGrid');
+        if (campData.success && campData.data.length > 0) {
+          const featured = campData.data.slice(0, 3);
+          grid.innerHTML = featured.map(c => {
+            const target = parseFloat(c.target_amount) || 1;
+            const raised = parseFloat(c.raised_amount) || 0;
+            const percent = Math.min(100, Math.round((raised / target) * 100));
+            const statusClass = c.status === 'Active' ? 'badge-active' : (c.status === 'Completed' ? 'badge-completed' : 'badge-upcoming');
+
+            return `
+              <div class="campaign-card">
+                <div class="campaign-header">
+                  <span class="badge ${statusClass}">${c.status || 'Active'}</span>
+                  <span style="font-size: 0.78rem; color: var(--gray-600);">ID: #${c.campaign_id}</span>
+                </div>
+                <div class="campaign-body">
+                  <h3>${c.title}</h3>
+                  <div class="progress-container">
+                    <div class="progress-labels">
+                      <span>Raised: <strong>${formatCurrency(raised)}</strong></span>
+                      <span style="color: var(--accent); font-weight: 700;">${percent}%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill" style="width: ${percent}%;"></div>
+                    </div>
+                  </div>
+                  <div class="campaign-meta">
+                    <span>Goal: <strong>${formatCurrency(target)}</strong></span>
+                    <span>Ends: ${formatDate(c.end_date)}</span>
+                  </div>
+                </div>
+                <div class="campaign-footer">
+                  <span style="font-size: 0.82rem; color: var(--gray-600);">${c.total_donations || 0} Donations</span>
+                  <a href="donate.html?campaign_id=${c.campaign_id}" class="btn btn-accent btn-sm">Donate Now ❤️</a>
+                </div>
+              </div>
+            `;
+          }).join('');
+        } else {
+          grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 30px;">No campaigns found. <a href="add-campaign.html">Click here to add one!</a></div>`;
+        }
+
+        // 3. Recent Donations
+        const donRes = await fetch('/api/donations');
+        const donData = await donRes.json();
+        const tbody = document.getElementById('recentDonationsTableBody');
+        if (donData.success && donData.data.length > 0) {
+          const recent = donData.data.slice(0, 5);
+          tbody.innerHTML = recent.map(d => `
+            <tr>
+              <td><code>${d.transaction_id || ('TXN-' + d.donation_id)}</code></td>
+              <td><strong>${d.donor_name || 'Anonymous Donor'}</strong></td>
+              <td>${d.campaign_title || 'General Relief Fund'}</td>
+              <td style="color: var(--accent); font-weight: 700;">${formatCurrency(d.amount)}</td>
+              <td>${d.donation_date || 'Just now'}</td>
+              <td><span class="badge badge-active">${d.payment_status || 'Completed'}</span></td>
+            </tr>
+          `).join('');
+        } else {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 20px;">No donations recorded yet in MySQL. <a href="donate.html">Be the first to donate!</a></td></tr>`;
+        }
+
+      } catch (err) {
+        console.error('Home load error:', err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadHomeData);
+  </script>
+</body>
+</html>

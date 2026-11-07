@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donor Dashboard - LifeCare Blood Bank</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .donor-dashboard {
+            padding: 50px 7%;
+        }
+
+        .donor-profile {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.1);
+        }
+
+        .donor-profile h2 {
+            text-align: center;
+            color: #b30000;
+            margin-bottom: 30px;
+        }
+
+        .donor-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .info-box {
+            padding: 15px;
+            background: #fff3f3;
+            border-left: 4px solid #b30000;
+            border-radius: 6px;
+        }
+
+        .info-box strong {
+            display: block;
+            color: #b30000;
+            margin-bottom: 5px;
+        }
+
+        .dashboard-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .dashboard-buttons button {
+            padding: 12px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            background: #b30000;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media(max-width:700px) {
+            .donor-info {
+                grid-template-columns: 1fr;
+            }
+        }
+        .donation-history {
+    max-width: 800px;
+    margin: 30px auto 0;
+}
+
+.donation-history h2 {
+    color: #b30000;
+    margin-bottom: 20px;
+}
+
+.history-card {
+    background: #fff5f5;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #b30000;
+}
+
+.history-card p {
+    margin: 12px 0;
+    color: #444;
+}
+
+.history-card strong {
+    color: #b30000;
+    margin-right: 8px;
+}
+
+#donationStatus {
+    color: #198754;
+    font-weight: bold;
+}
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🩸 LifeCare Blood Bank
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <nav id="mainNav">
+
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="donors.html">Donors</a>
+        <a href="inventory.html">Inventory</a>
+        <a href="requests.html">Requests</a>
+        <a href="camps.html">Camps</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin-login.html">Admin</a>
+
+    </nav>
+
+</header>
+
+<section class="page-title">
+
+    <h1>Donor Dashboard</h1>
+
+    <p>
+        View your registered donor details.
+    </p>
+
+</section>
+
+<section class="donor-dashboard">
+
+    <div class="donor-profile">
+
+        <h2>🩸 Donor Profile</h2>
+
+        <div class="donor-info">
+
+            <div class="info-box">
+                <strong>Full Name</strong>
+                <span id="donorName">Loading...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>Email</strong>
+                <span id="donorEmail">Loading...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>Phone</strong>
+                <span id="donorPhone">Loading...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>Age</strong>
+                <span id="donorAge">Loading...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>Gender</strong>
+                <span id="donorGender">Loading...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>Blood Group</strong>
+                <span id="donorBloodGroup">Loading...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>City</strong>
+                <span id="donorCity">Loading...</span>
+            </div>
+
+            <div class="info-box">
+                <strong>Last Donation</strong>
+                <span id="donorLastDonation">Not Provided</span>
+            </div>
+
+        </div>
+        <div class="donation-history">
+
+    <h2>🩸 Donation History</h2>
+
+    <div class="history-card">
+
+        <p>
+            <strong>Last Donation:</strong>
+            <span id="historyLastDonation">
+                Not Available
+            </span>
+        </p>
+
+        <p>
+            <strong>Blood Group:</strong>
+            <span id="historyBloodGroup">
+                Loading...
+            </span>
+        </p>
+
+        <p>
+    <strong>Donation Status:</strong>
+    <span id="donationStatus">
+        Donation Completed
+    </span>
+</p>
+
+    </div>
+    <h3>Previous Donations</h3>
+
+<table class="dashboard-table">
+
+    <thead>
+        <tr>
+            <th>Donation Date</th>
+            <th>Blood Group</th>
+            <th>Units</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody id="donationHistoryTable">
+
+        <tr>
+            <td colspan="4">
+                Loading donation history...
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+</div>
+
+        <div class="dashboard-buttons">
+
+            <button onclick="window.location.href='index.html'">
+                🏠 Home
+            </button>
+
+            <button onclick="donorLogout()">
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-content">
+
+        <h3>🩸 LifeCare Blood Bank</h3>
+
+        <p>Donate Blood • Save Lives</p>
+
+        <p>© 2026 LifeCare Blood Bank. All Rights Reserved.</p>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

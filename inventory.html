@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blood Inventory - LifeCare Blood Bank</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-title {
+            background: linear-gradient(
+                rgba(120, 0, 0, 0.85),
+                rgba(120, 0, 0, 0.85)
+            );
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .page-title h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .inventory-section {
+            padding: 60px 7%;
+        }
+
+        .inventory-section h2 {
+            text-align: center;
+            color: #b30000;
+            margin-bottom: 35px;
+            font-size: 32px;
+        }
+
+        .inventory-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .inventory-table th,
+        .inventory-table td {
+            padding: 18px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .inventory-table th {
+            background: #b30000;
+            color: white;
+            font-size: 16px;
+        }
+
+        .inventory-table tr:hover {
+            background: #fff5f5;
+        }
+
+        .blood-group {
+            font-size: 20px;
+            font-weight: bold;
+            color: #b30000;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
+        .low {
+            color: #e67e00;
+            font-weight: bold;
+        }
+
+        .critical {
+            color: red;
+            font-weight: bold;
+        }
+
+        .inventory-info {
+            margin-top: 35px;
+            background: #fff5f5;
+            padding: 25px;
+            border-left: 5px solid #b30000;
+            border-radius: 6px;
+        }
+
+        .inventory-info h3 {
+            color: #b30000;
+            margin-bottom: 10px;
+        }
+
+        .inventory-info p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        @media (max-width: 700px) {
+
+            .inventory-section {
+                padding: 40px 4%;
+                overflow-x: auto;
+            }
+
+            .inventory-table {
+                min-width: 650px;
+            }
+
+            .page-title h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+<header>
+
+    <div class="logo">
+        🩸 LifeCare Blood Bank
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <nav id="mainNav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="donors.html">
+            Donors
+        </a>
+
+        <a href="inventory.html" class="active">
+            Inventory
+        </a>
+
+        <a href="requests.html">
+            Requests
+        </a>
+
+        <a href="camps.html">
+            Camps
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        <a href="admin-login.html">
+            Admin
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+
+    <!-- Page Title -->
+
+    <section class="page-title">
+
+        <h1>Blood Inventory</h1>
+
+        <p>
+            Check the current availability of blood groups.
+        </p>
+
+    </section>
+
+
+    <!-- Inventory -->
+
+    <section class="inventory-section">
+
+        <h2>Available Blood Stock</h2>
+
+
+        <table class="inventory-table">
+
+            <thead>
+
+                <tr>
+                    <th>Blood Group</th>
+                    <th>Available Units</th>
+                    <th>Status</th>
+                    <th>Last Updated</th>
+                </tr>
+
+            </thead>
+
+
+<tbody id="inventoryTable">
+
+    <tr>
+        <td colspan="4">Loading inventory...</td>
+    </tr>
+
+</tbody>
+        </table>
+
+
+
+
+        <!-- Information -->
+
+        <div class="inventory-info">
+
+            <h3>📦 About Blood Inventory</h3>
+
+            <p>
+                This section displays the available blood units
+                for each blood group. In the complete system,
+                the inventory will be connected to the backend
+                and MongoDB database so that administrators can
+                add, update and manage blood stock.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>🩸 LifeCare Blood Bank</h3>
+
+            <p>
+                Connecting donors with people who need blood.
+            </p>
+
+            <p>
+                © 2026 LifeCare Blood Bank Management System
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login - LifeCare Blood Bank</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+    .login-page {
+        min-height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 20px;
+        background: #f7f8fa;
+    }
+
+    .login-box {
+        width: 400px;
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    }
+
+    .login-icon {
+        text-align: center;
+        font-size: 55px;
+        margin-bottom: 15px;
+    }
+
+    .login-box h1 {
+        text-align: center;
+        color: #b30000;
+        margin-bottom: 10px;
+    }
+
+    .login-box p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #b30000;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 14px;
+        background: #b30000;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .login-btn:hover {
+        background: #8b0000;
+    }
+
+    .back-home {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-home a {
+        color: #b30000;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+
+        .login-box {
+            width: 100%;
+            padding: 30px 20px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        🩸 LifeCare Blood Bank
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <nav id="mainNav">
+
+        <a href="index.html">Home</a>
+
+        <a href="about.html">About</a>
+
+        <a href="donors.html">Donors</a>
+
+        <a href="inventory.html">Inventory</a>
+
+        <a href="requests.html">Requests</a>
+
+        <a href="camps.html">Camps</a>
+
+        <a href="contact.html">Contact</a>
+        
+<a href="admin-login.html">Admin</a>
+
+
+
+    </nav>
+
+</header>
+
+
+
+<section class="login-page">
+
+
+<div class="login-box">
+
+    <div class="login-icon">
+        🔐
+    </div>
+
+    <h1>Admin Login</h1>
+
+    <p>
+        Login to access the Admin Dashboard
+    </p>
+
+
+    <form id="adminLoginForm">
+
+        <div class="form-group">
+
+            <label for="adminUsername">
+                👤 Admin Username
+            </label>
+
+            <input
+                type="text"
+                id="adminUsername"
+                placeholder="Enter username"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="adminPassword">
+                🔒 Password
+            </label>
+
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Enter password"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-btn"
+        >
+            🔑 Login
+        </button>
+
+    </form>
+
+
+    <div class="back-home">
+
+        <a href="index.html">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<footer>
+
+
+<div class="footer-content">
+
+    <h3>
+        🩸 LifeCare Blood Bank
+    </h3>
+
+    <p>
+        Connecting donors with people who need blood.
+    </p>
+
+    <p>
+        © 2026 LifeCare Blood Bank Management System
+    </p>
+
+</div>
+
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

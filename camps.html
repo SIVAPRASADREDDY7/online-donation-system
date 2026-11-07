@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Camps - LifeCare Blood Bank</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-title {
+            background: linear-gradient(rgba(120,0,0,.8), rgba(120,0,0,.8)),
+            url("https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .page-title h1 {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .camps-section {
+            padding: 60px 7%;
+        }
+
+        .camps-section > h2 {
+            text-align: center;
+            color: #b30000;
+            font-size: 34px;
+            margin-bottom: 35px;
+        }
+
+        .camp-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .camp-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0,0,0,.1);
+            transition: .3s;
+        }
+
+        .camp-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .camp-header {
+            background: #b30000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .camp-header h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .camp-body {
+            padding: 25px;
+        }
+
+        .camp-body p {
+            margin: 12px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .camp-body strong {
+            color: #b30000;
+        }
+
+        .register-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: #b30000;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .register-btn:hover {
+            background: #8b0000;
+        }
+
+        .camp-info {
+            margin-top: 45px;
+            padding: 25px;
+            background: #fff3f3;
+            border-left: 5px solid #b30000;
+        }
+
+        .camp-info h3 {
+            color: #b30000;
+            margin-bottom: 10px;
+        }
+
+        .camp-info p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        @media(max-width:900px) {
+            .camp-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .camp-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        🩸 LifeCare Blood Bank
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <nav id="mainNav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="donors.html">
+            Donors
+        </a>
+
+        <a href="inventory.html">
+            Inventory
+        </a>
+
+        <a href="requests.html">
+            Requests
+        </a>
+
+        <a href="camps.html" class="active">
+            Camps
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        <a href="admin-login.html">
+            Admin
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<section class="page-title">
+    <h1>Blood Donation Camps</h1>
+    <p>Join our upcoming blood donation camps and help save lives.</p>
+</section>
+
+<section class="camps-section">
+
+    <h2>Upcoming Donation Camps</h2>
+
+    <div class="camp-container">
+
+        <div class="camp-card">
+            <div class="camp-header">
+                <h3>Community Blood Camp</h3>
+                <p>Open for Donors</p>
+            </div>
+
+            <div class="camp-body">
+                <p><strong>📅 Date:</strong> 15 September 2026</p>
+                <p><strong>⏰ Time:</strong> 9:00 AM - 2:00 PM</p>
+                <p><strong>📍 Location:</strong> Community Hall</p>
+                <p><strong>👥 Organizer:</strong> LifeCare Blood Bank</p>
+
+                <a href="donors.html" class="register-btn">
+                    Register as Donor
+                </a>
+            </div>
+        </div>
+
+        <div class="camp-card">
+            <div class="camp-header">
+                <h3>College Blood Camp</h3>
+                <p>Student Donation Drive</p>
+            </div>
+
+            <div class="camp-body">
+                <p><strong>📅 Date:</strong> 22 September 2026</p>
+                <p><strong>⏰ Time:</strong> 10:00 AM - 3:00 PM</p>
+                <p><strong>📍 Location:</strong> College Campus</p>
+                <p><strong>👥 Organizer:</strong> LifeCare Blood Bank</p>
+
+                <a href="donors.html" class="register-btn">
+                    Register as Donor
+                </a>
+            </div>
+        </div>
+
+        <div class="camp-card">
+            <div class="camp-header">
+                <h3>Emergency Blood Camp</h3>
+                <p>Special Donation Drive</p>
+            </div>
+
+            <div class="camp-body">
+                <p><strong>📅 Date:</strong> 30 September 2026</p>
+                <p><strong>⏰ Time:</strong> 9:00 AM - 1:00 PM</p>
+                <p><strong>📍 Location:</strong> LifeCare Blood Bank</p>
+                <p><strong>👥 Organizer:</strong> LifeCare Blood Bank</p>
+
+                <a href="donors.html" class="register-btn">
+                    Register as Donor
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="camp-info">
+        <h3>🩸 Why Join a Blood Donation Camp?</h3>
+        <p>
+            Blood donation camps provide an organized way for eligible donors
+            to donate blood. Every successful donation can contribute to
+            maintaining blood availability for patients who need transfusions.
+        </p>
+    </div>
+
+</section>
+
+<footer>
+    <div class="footer-content">
+        <h3>🩸 LifeCare Blood Bank</h3>
+        <p>Donate Blood • Save Lives</p>
+        <p>© 2026 LifeCare Blood Bank. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

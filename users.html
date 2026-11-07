@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donors & Users Directory | Siva Prasad Reddy Online Donation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="developer-tag">
+      <span>🌟</span>
+      <span>Online Donation Management System | Developed by <strong>Siva Prasad Reddy</strong></span>
+    </div>
+    <div class="mysql-pill" id="mysqlStatusPill">
+      <span class="pulse-dot"></span> Checking MySQL...
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">SP</div>
+        <div class="brand-text">
+          <h1>Siva Prasad Reddy</h1>
+          <p>Online Donation System</p>
+        </div>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="campaigns.html" class="nav-link">Campaigns</a>
+        <a href="donate.html" class="nav-link btn-donate-nav">❤️ Donate Now</a>
+        <a href="add-campaign.html" class="nav-link">Add Campaign</a>
+        <a href="users.html" class="nav-link active">Donors & Users</a>
+        <a href="about.html" class="nav-link">About & Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO WITH CUSTOM BANNER IMAGE -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">👥 User Management • MySQL Schema</span>
+        <h1>Donors & User Network</h1>
+        <p>
+          Register new donors, volunteers, or administrators into MySQL Workbench table <code>users</code>.
+          Track donor contributions, roles, and contact information.
+        </p>
+        <div class="hero-actions">
+          <a href="#registerUserSection" class="btn btn-accent">Register New User 👇</a>
+          <a href="#usersDirectorySection" class="btn btn-outline-white">📋 Browse User Table</a>
+        </div>
+      </div>
+      <div class="hero-image-box">
+        <img src="images/users_banner.jpg" alt="Donors and Users Community Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN SECTION: REGISTRATION FORM + TABLE -->
+  <main class="section-wrapper">
+
+    <!-- USER REGISTRATION FORM -->
+    <div style="max-width: 800px; margin: 0 auto 50px;" id="registerUserSection">
+      <div class="form-card">
+        <div class="section-header" style="margin-bottom: 24px;">
+          <span class="sub-title">MySQL Table: users</span>
+          <h2 style="font-size: 1.6rem;">Register New User / Donor</h2>
+          <p>Every submitted record is written to MySQL table <code>users(user_id, name, email, password, phone, role)</code>.</p>
+        </div>
+
+        <form id="addUserForm" onsubmit="handleRegisterUser(event)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="userName">Full Name <span style="color: red;">*</span></label>
+              <input type="text" id="userName" class="form-control" placeholder="e.g. Siva Prasad Reddy" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userEmail">Email Address (Unique) <span style="color: red;">*</span></label>
+              <input type="email" id="userEmail" class="form-control" placeholder="e.g. donor@example.com" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="userPhone">Phone Number <span style="color: red;">*</span></label>
+              <input type="tel" id="userPhone" class="form-control" placeholder="e.g. 9848012345" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userPassword">Password <span style="color: red;">*</span></label>
+              <input type="password" id="userPassword" class="form-control" placeholder="••••••••" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userRole">Account Role <span style="color: red;">*</span></label>
+            <select id="userRole" class="form-control">
+              <option value="Donor" selected>Donor (Supports Causes)</option>
+              <option value="Volunteer">Volunteer (Community Support)</option>
+              <option value="Fundraiser">Fundraiser (Organizes Events)</option>
+              <option value="Admin">Admin (Full System Access)</option>
+            </select>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <button type="submit" id="btnSubmitUser" class="btn btn-primary" style="width: 100%;">
+              💾 Insert User into MySQL Database
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- USERS DIRECTORY TABLE -->
+    <div id="usersDirectorySection">
+      <div class="section-header">
+        <span class="sub-title">Registered Accounts</span>
+        <h2>MySQL Workbench Users Directory</h2>
+        <p>Live view of all users saved in MySQL database table <code>users</code>.</p>
+      </div>
+
+      <div class="form-card" style="margin-bottom: 24px; padding: 16px;">
+        <input type="text" id="searchUser" class="form-control" placeholder="🔍 Search users by name, email, or role..." oninput="filterUsers()">
+      </div>
+
+      <div class="table-responsive">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Role</th>
+              <th>Total Donated</th>
+              <th>Donations Made</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody">
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 20px;">Fetching users from MySQL...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Siva Prasad Reddy Foundation</h4>
+        <p style="margin-bottom: 14px; font-size: 0.9rem;">
+          Developed by <strong>Siva Prasad Reddy</strong>.
+        </p>
+        <p style="font-size: 0.85rem; color: #93c5fd;">
+          💾 Database: <strong>online_donation</strong> | Table: <strong>users</strong>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="campaigns.html">Active Campaigns</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="add-campaign.html">Create Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Management</h4>
+        <ul>
+          <li><a href="users.html">Users & Donors</a></li>
+          <li><a href="about.html">About Developer</a></li>
+          <li><a href="about.html#contactSection">Contact Office</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>MySQL Workbench Tables</h4>
+        <ul style="font-size: 0.82rem; font-family: monospace;">
+          <li>📁 1. users</li>
+          <li>📁 2. campaigns</li>
+          <li>📁 3. donations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 <strong>Siva Prasad Reddy</strong> | Online Donation Management System.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    let allUsers = [];
+
+    async function loadUsers() {
+      try {
+        const res = await fetch('/api/users');
+        const data = await res.json();
+        if (data.success) {
+          allUsers = data.data;
+          renderUsers(allUsers);
+        } else {
+          showToast('Failed to load users from MySQL: ' + data.message, 'error');
+        }
+      } catch (err) {
+        console.error('Error loading users:', err);
+      }
+    }
+
+    function renderUsers(users) {
+      const tbody = document.getElementById('userTableBody');
+      if (!users || users.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 20px;">No users found in MySQL table users. Register one above!</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = users.map(u => {
+        let badgeColor = 'badge-active';
+        if (u.role === 'Admin') badgeColor = 'badge-completed';
+        if (u.role === 'Volunteer') badgeColor = 'badge-upcoming';
+
+        return `
+          <tr>
+            <td><strong>#${u.user_id}</strong></td>
+            <td><strong>${u.name}</strong></td>
+            <td>${u.email}</td>
+            <td>${u.phone || 'N/A'}</td>
+            <td><span class="badge ${badgeColor}">${u.role}</span></td>
+            <td style="color: var(--accent); font-weight: 700;">${formatCurrency(u.total_donated)}</td>
+            <td>${u.donation_count || 0}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="deleteUser(${u.user_id})">🗑️ Delete</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterUsers() {
+      const query = document.getElementById('searchUser').value.toLowerCase().trim();
+      if (!query) {
+        renderUsers(allUsers);
+        return;
+      }
+
+      const filtered = allUsers.filter(u =>
+        u.name.toLowerCase().includes(query) ||
+        u.email.toLowerCase().includes(query) ||
+        (u.role && u.role.toLowerCase().includes(query)) ||
+        (u.phone && u.phone.includes(query))
+      );
+      renderUsers(filtered);
+    }
+
+    async function handleRegisterUser(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('btnSubmitUser');
+      btn.disabled = true;
+      btn.innerText = '⏳ Inserting into MySQL table users...';
+
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+      const phone = document.getElementById('userPhone').value.trim();
+      const password = document.getElementById('userPassword').value.trim();
+      const role = document.getElementById('userRole').value;
+
+      try {
+        const res = await fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, password, role })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          showToast(`User #${data.user_id} registered successfully in MySQL!`, 'success');
+          document.getElementById('addUserForm').reset();
+          loadUsers();
+        } else {
+          showToast(`Registration error: ${data.message}`, 'error');
+        }
+      } catch (err) {
+        console.error('User register error:', err);
+        showToast('Server error while saving user.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerText = '💾 Insert User into MySQL Database';
+      }
+    }
+
+    async function deleteUser(id) {
+      if (!confirm(`Are you sure you want to delete user #${id} from MySQL?`)) return;
+
+      try {
+        const res = await fetch(`/api/users/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`User #${id} deleted from MySQL.`, 'success');
+          loadUsers();
+        } else {
+          showToast(`Cannot delete: ${data.message}`, 'error');
+        }
+      } catch (err) {
+        console.error('Delete error:', err);
+        showToast('Error deleting user.', 'error');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadUsers);
+  </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundraising Campaigns | Siva Prasad Reddy Online Donation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="top-bar">
+    <div class="developer-tag">
+      <span>🌟</span>
+      <span>Online Donation Management System | Developed by <strong>Siva Prasad Reddy</strong></span>
+    </div>
+    <div class="mysql-pill" id="mysqlStatusPill">
+      <span class="pulse-dot"></span> Checking MySQL...
+    </div>
+  </div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">SP</div>
+        <div class="brand-text">
+          <h1>Siva Prasad Reddy</h1>
+          <p>Online Donation System</p>
+        </div>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="campaigns.html" class="nav-link active">Campaigns</a>
+        <a href="donate.html" class="nav-link btn-donate-nav">❤️ Donate Now</a>
+        <a href="add-campaign.html" class="nav-link">Add Campaign</a>
+        <a href="users.html" class="nav-link">Donors & Users</a>
+        <a href="about.html" class="nav-link">About & Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO WITH CUSTOM CAMPAIGNS BANNER IMAGE -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">📋 Verified Causes • MySQL Database</span>
+        <h1>Active Fundraising Campaigns</h1>
+        <p>
+          Explore all live social welfare campaigns initiated under the <strong>Siva Prasad Reddy Online Donation Platform</strong>.
+          Every campaign has a defined target and date range stored in the MySQL <code>campaigns</code> table.
+        </p>
+        <div class="hero-actions">
+          <a href="#campaignGridSection" class="btn btn-accent">Explore Causes 👇</a>
+          <a href="add-campaign.html" class="btn btn-outline-white">➕ Create New Campaign</a>
+        </div>
+      </div>
+      <div class="hero-image-box">
+        <img src="images/campaigns_banner.jpg" alt="Charity Campaigns Banner">
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAIGNS CONTENT SECTION -->
+  <main class="section-wrapper" id="campaignGridSection">
+    
+    <!-- SEARCH & FILTER TOOLBAR -->
+    <div class="form-card" style="margin-bottom: 32px; padding: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div style="flex: 1; min-width: 250px;">
+          <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search campaigns by title..." oninput="filterCampaigns()">
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn btn-outline btn-sm active-filter" onclick="setFilter('all', this)">All Causes</button>
+          <button class="btn btn-outline btn-sm" onclick="setFilter('Active', this)">Active</button>
+          <button class="btn btn-outline btn-sm" onclick="setFilter('Completed', this)">Completed</button>
+          <button class="btn btn-outline btn-sm" onclick="setFilter('Upcoming', this)">Upcoming</button>
+        </div>
+        <div>
+          <a href="add-campaign.html" class="btn btn-primary btn-sm">➕ Add Campaign</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAMPAIGN CARDS GRID -->
+    <div class="campaigns-grid" id="allCampaignsGrid">
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray-600);">
+        Loading campaigns from MySQL database table `campaigns`...
+      </div>
+    </div>
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>Siva Prasad Reddy Foundation</h4>
+        <p style="margin-bottom: 14px; font-size: 0.9rem;">
+          Transparent online donation management developed by <strong>Siva Prasad Reddy</strong>.
+          Every campaign is verified and recorded in MySQL Workbench.
+        </p>
+        <p style="font-size: 0.85rem; color: #93c5fd;">
+          💾 Database: <strong>online_donation</strong> | Table: <strong>campaigns</strong>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="campaigns.html">Active Campaigns</a></li>
+          <li><a href="donate.html">Make a Donation</a></li>
+          <li><a href="add-campaign.html">Create Campaign</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Management</h4>
+        <ul>
+          <li><a href="users.html">Users & Donors</a></li>
+          <li><a href="about.html">About Developer</a></li>
+          <li><a href="about.html#contactSection">Contact Office</a></li>
+          <li><a href="donate.html">Instant Receipt</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>MySQL Workbench Tables</h4>
+        <p style="font-size: 0.85rem; margin-bottom: 8px;">Tables managed in real-time:</p>
+        <ul style="font-size: 0.82rem; font-family: monospace;">
+          <li>📁 1. users</li>
+          <li>📁 2. campaigns</li>
+          <li>📁 3. donations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 <strong>Siva Prasad Reddy</strong> | Online Donation Management System.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    let allCampaigns = [];
+    let currentFilter = 'all';
+
+    async function fetchCampaigns() {
+      try {
+        const res = await fetch('/api/campaigns');
+        const data = await res.json();
+        if (data.success) {
+          allCampaigns = data.data;
+          renderCampaigns(allCampaigns);
+        } else {
+          document.getElementById('allCampaignsGrid').innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: red;">Failed to load campaigns: ${data.message}</p>`;
+        }
+      } catch (err) {
+        console.error('Error fetching campaigns:', err);
+        document.getElementById('allCampaignsGrid').innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: red;">Error connecting to MySQL server.</p>`;
+      }
+    }
+
+    function renderCampaigns(campaigns) {
+      const grid = document.getElementById('allCampaignsGrid');
+      if (!campaigns || campaigns.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 50px; background: white; border-radius: 12px; border: 1px dashed var(--gray-400);">
+            <h3>No campaigns found matching criteria</h3>
+            <p style="color: var(--gray-600); margin: 8px 0 16px;">Would you like to start a new fundraising campaign?</p>
+            <a href="add-campaign.html" class="btn btn-primary">➕ Create New Campaign</a>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = campaigns.map(c => {
+        const target = parseFloat(c.target_amount) || 1;
+        const raised = parseFloat(c.raised_amount) || 0;
+        const percent = Math.min(100, Math.round((raised / target) * 100));
+        const statusClass = c.status === 'Active' ? 'badge-active' : (c.status === 'Completed' ? 'badge-completed' : 'badge-upcoming');
+
+        return `
+          <div class="campaign-card">
+            <div class="campaign-header">
+              <span class="badge ${statusClass}">${c.status || 'Active'}</span>
+              <span style="font-size: 0.78rem; color: var(--gray-600); font-family: monospace;">ID: #${c.campaign_id}</span>
+            </div>
+            <div class="campaign-body">
+              <h3>${c.title}</h3>
+              
+              <div class="progress-container">
+                <div class="progress-labels">
+                  <span>Raised: <strong>${formatCurrency(raised)}</strong></span>
+                  <span style="color: var(--accent); font-weight: 700;">${percent}%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: ${percent}%;"></div>
+                </div>
+              </div>
+
+              <div class="campaign-meta">
+                <span>🎯 Goal: <strong>${formatCurrency(target)}</strong></span>
+                <span>⏳ Ends: ${formatDate(c.end_date)}</span>
+              </div>
+
+              <div style="font-size: 0.8rem; color: var(--gray-600); margin-top: 6px;">
+                <span>📅 Started: ${formatDate(c.start_date)}</span>
+              </div>
+            </div>
+            
+            <div class="campaign-footer">
+              <span style="font-size: 0.82rem; color: var(--gray-600);">❤️ ${c.total_donations || 0} Donations</span>
+              <a href="donate.html?campaign_id=${c.campaign_id}" class="btn btn-accent btn-sm">Donate Now</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.active-filter').forEach(b => b.classList.remove('active-filter'));
+      btn.classList.add('active-filter');
+      filterCampaigns();
+    }
+
+    function filterCampaigns() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+      let filtered = allCampaigns;
+
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(c => (c.status || '').toLowerCase() === currentFilter.toLowerCase());
+      }
+
+      if (searchTerm) {
+        filtered = filtered.filter(c => c.title.toLowerCase().includes(searchTerm));
+      }
+
+      renderCampaigns(filtered);
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchCampaigns);
+  </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donor Login - LifeCare Blood Bank</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+.donor-login-section {
+    min-height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #fff5f5, #ffe0e0);
+}
+
+.donor-login-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.donor-login-card h2 {
+    color: #b30000;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.login-field {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.login-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.login-field input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.login-field input:focus {
+    outline: none;
+    border-color: #b30000;
+}
+
+.donor-login-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #b30000;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.donor-login-btn:hover {
+    background: #8f0000;
+}
+
+@media(max-width:600px) {
+    .donor-login-card {
+        padding: 30px 20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🩸 LifeCare Blood Bank
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <nav id="mainNav">
+
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="donors.html">Donors</a>
+        <a href="inventory.html">Inventory</a>
+        <a href="requests.html">Requests</a>
+        <a href="camps.html">Camps</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin-login.html">Admin</a>
+
+    </nav>
+
+</header>
+
+<section class="page-title">
+
+    <h1>Donor Login</h1>
+
+    <p>
+        Login to view your donor details and history.
+    </p>
+
+</section>
+
+<section class="donor-login-section">
+
+   <div class="donor-login-card">
+
+        <h2>Donor Login</h2>
+
+        <form id="donorLoginForm">
+
+            <div class="login-field">
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    id="donorLoginEmail"
+                    placeholder="Enter your registered email"
+                    required
+                >
+
+            </div>
+            <div class="login-field">
+    <label>Password</label>
+
+    <input
+        type="password"
+        id="donorLoginPassword"
+        placeholder="Enter your password"
+        required
+    >
+</div>
+
+            <br>
+
+            <button
+                type="submit"
+               class="donor-login-btn"
+            >
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-content">
+
+        <h3>🩸 LifeCare Blood Bank</h3>
+
+        <p>Donate Blood • Save Lives</p>
+
+        <p>© 2026 LifeCare Blood Bank. All Rights Reserved.</p>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

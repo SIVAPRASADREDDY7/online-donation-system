@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us - LifeCare Blood Bank</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .page-title {
+            background: linear-gradient(rgba(120,0,0,.8), rgba(120,0,0,.8)),
+            url("https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .page-title h1 {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .contact-section {
+            padding: 60px 7%;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.1);
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+            color: #b30000;
+            margin-bottom: 25px;
+        }
+
+        .info-box {
+            margin-bottom: 22px;
+        }
+
+        .info-box h3 {
+            color: #b30000;
+            margin-bottom: 7px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form label {
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #b30000;
+        }
+
+        .contact-form textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact-btn {
+            padding: 14px;
+            background: #b30000;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            background: #8b0000;
+        }
+
+        .emergency-contact {
+            max-width: 1100px;
+            margin: 35px auto 0;
+            padding: 25px;
+            background: #fff3f3;
+            border-left: 5px solid #b30000;
+            text-align: center;
+        }
+
+        .emergency-contact h3 {
+            color: #b30000;
+            margin-bottom: 10px;
+        }
+
+        .emergency-contact p {
+            color: #555;
+        }
+
+        @media(max-width:800px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🩸 LifeCare Blood Bank
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+    </div>
+
+    <nav id="mainNav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="donors.html">
+            Donors
+        </a>
+
+        <a href="inventory.html">
+            Inventory
+        </a>
+
+        <a href="requests.html">
+            Requests
+        </a>
+
+        <a href="camps.html">
+            Camps
+        </a>
+
+        <a href="contact.html" class="active">
+            Contact
+        </a>
+
+        <a href="admin-login.html">
+            Admin
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<section class="page-title">
+    <h1>Contact Us</h1>
+    <p>We are here to support donors, hospitals and patients.</p>
+</section>
+
+<section class="contact-section">
+
+    <div class="contact-container">
+
+        <!-- Contact Information -->
+
+        <div class="contact-info">
+
+            <h2>Get In Touch</h2>
+
+            <div class="info-box">
+                <h3>📍 Address</h3>
+                <p>
+                    LifeCare Blood Bank,<br>
+                    Main Road, City Center,<br>
+                    Andhra Pradesh, India
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3>📞 Phone</h3>
+                <p>+91 98765 43210</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📧 Email</h3>
+                <p>lifecarebloodbank@gmail.com</p>
+            </div>
+
+            <div class="info-box">
+                <h3>🕒 Working Hours</h3>
+                <p>
+                    Monday - Saturday: 9:00 AM - 6:00 PM<br>
+                    Sunday: 10:00 AM - 2:00 PM
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Contact Form -->
+
+        <div class="contact-form">
+
+            <h2>Send Us a Message</h2>
+
+            <form id="contactForm">
+
+                <label>Full Name</label>
+                <input type="text"
+                       id="contactName"
+                       placeholder="Enter your name"
+                       required>
+
+                <label>Email</label>
+                <input type="email"
+                       id="contactEmail"
+                       placeholder="Enter your email"
+                       required>
+
+                <label>Phone Number</label>
+                <input type="tel"
+                       id="contactPhone"
+                       placeholder="Enter your phone number"
+                       required>
+
+                <label>Message</label>
+                <textarea id="message"
+                          placeholder="Enter your message"
+                          required></textarea>
+
+                <button type="submit" class="contact-btn">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <div class="emergency-contact">
+
+        <h3>🚨 Emergency Blood Requirement?</h3>
+
+        <p>
+            Please use our Blood Request page to submit your requirement
+            and contact the blood bank directly for urgent assistance.
+        </p>
+
+    </div>
+
+</section>
+
+
+<footer>
+    <div class="footer-content">
+        <h3>🩸 LifeCare Blood Bank</h3>
+        <p>Donate Blood • Save Lives</p>
+        <p>© 2026 LifeCare Blood Bank. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
